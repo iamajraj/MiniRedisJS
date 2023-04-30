@@ -19,6 +19,7 @@ const VALUES = new Map();
 function take_snapshot() {
   let snapshots = "";
   VALUES.forEach((value, key) => {
+    if (!value || !key) return;
     let key_values = `${key} ${value}\n`;
     snapshots += key_values;
   });
@@ -79,6 +80,7 @@ function DELETE(rest: Array<String>) {
   }
   VALUES.delete(key);
   console.log("key has been removed");
+  take_snapshot();
 }
 
 function print_screen() {
